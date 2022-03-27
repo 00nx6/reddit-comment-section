@@ -1,0 +1,38 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  
+  }
+  
+  img {
+    display: block;
+    width: 100%;
+  }
+  
+  svg {
+    display: block;
+  }
+  
+  html,
+  body {
+    font-size: 0.625em;
+  }
+  
+  body {
+    font-size: 16px;
+    min-width: 32rem;
+  }
+  
+  input[type='text'],input[type='email'], input[type='password'],input[type='number'], textarea  {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
