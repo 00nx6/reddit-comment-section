@@ -9,6 +9,8 @@ body {
     flex-direction: column;
     padding: 1rem;
     .comment {
+        padding: 2rem;
+        border-radius: 1rem;
         background: white;
         .userInfo {
             display: flex;
