@@ -1,21 +1,23 @@
 body {
-    background-color: $Verylightgray
+    background-color: black;
 }
 
 .genCont {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
-    padding: 1rem;
+    gap: 2rem;
+    padding: 3rem;
     .comment {
         padding: 2rem;
         border-radius: 1rem;
         background: white;
+        min-width: 100%;
         .userInfo {
             display: flex;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             gap: 1.5rem;
             font-family: $Rubik;
             .pfp {
@@ -70,6 +72,24 @@ body {
                     background-color: transparent;
                     border: none;
                     gap: 1rem;
+                }
+            }
+        }
+    }
+    .reply {
+        margin-left: 5%;
+        min-width: 95%;
+    }
+    .comment.reply {
+        .commentPara{
+            .replyAt {
+                h3 {
+                    display: inline;
+                    font-size: 1.5rem;
+                    color: $Moderateblue;
+                }
+                h3::after {
+                    content: " ";
                 }
             }
         }
