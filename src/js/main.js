@@ -12,9 +12,13 @@ getData()
     .then(data => dataHandler(data))
     .catch(err => console.log(err))
 
-function dataHandler(json){
-    console.log(json)
-    json.comments.forEach(obj => commentProfile(obj));
+function dataHandler(json) {
+    json.comments.forEach(obj => {
+        commentProfile(obj, false)
+        if(Array.isArray(obj.replies) && obj.replies.length > 0) {
+            obj.replies.forEach(reply => commentProfile(reply, true))
+        } 
+    });
 }
 
 const commentProfile = (objData) => {
