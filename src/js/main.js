@@ -48,8 +48,7 @@ const commentProfile = (objData, isReply) => {
     
     const commentPara = document.createElement('p')
     commentPara.classList.add('commentPara')
-    
-    const commentText = objData.content
+
     
     if (isReply) {
 
