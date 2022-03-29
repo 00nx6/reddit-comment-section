@@ -105,4 +105,8 @@ const commentProfile = (objData) => {
 // so it can be reused for comments too
 // if in the forEach loop, it finds comments to be a non empty array, 
 // for every reply on the comment run the reply append function
+<<<<<<< HEAD
 // determine if its a reply by passing it on as a boolean
+=======
+// determine if its a reply by passing it on as a boolean
+>>>>>>> 77a73ad6df40b0975b18c9a52ded49a43f53680d

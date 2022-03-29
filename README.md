@@ -2,7 +2,10 @@
 
 
 ## todo
-remove the comment from index.html and make it an empty template,
-make a js script that auto fills in info based on data.json
-and applies the template into index.html
-pseudocode can wait till later : )
+ make a seperate function for appending the comment, 
+ so it can be reused for comments too
+ if in the forEach loop, it finds comments to be a non empty array, 
+ for every reply on the comment run the reply append function
+determine if its a reply by passing it on as a boolean
+
+makes little sense i know but it makes sense to me : )
