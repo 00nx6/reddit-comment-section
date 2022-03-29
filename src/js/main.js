@@ -72,6 +72,8 @@ const commentProfile = (objData, isReply) => {
     const upVote = document.createElement('button')
     upVote.classList.add('upVote')
 
+    upVote.addEventListener('click', upVoteClick)
+
     const addSymbol = document.createElement('i')
     addSymbol.classList.add('plus')
     addSymbol.innerText = '+'
@@ -83,7 +85,7 @@ const commentProfile = (objData, isReply) => {
     const downVote = document.createElement('button')
     downVote.classList.add('downVote')
 
-    // downVote.addEventListener('click', upvote)
+    downVote.addEventListener('click', downVoteClick) 
 
     const minusSymbol = document.createElement('i')
     minusSymbol.classList.add('minus')
@@ -103,14 +105,16 @@ const commentProfile = (objData, isReply) => {
     downVote.appendChild(minusSymbol)
 
     genCont.appendChild(commentBody)
-
-    voteBttns()
 }
 
+function upVoteClick() {
+    this.nextElementSibling.innerText++
+}
 
-// make a seperate function for appending the comment, 
-// so it can be reused for comments too
-// if in the forEach loop, it finds comments to be a non empty array, 
-// for every reply on the comment run the reply append function
-// determine if its a reply by passing it on as a boolean
+function downVoteClick() {
+    this.previousElementSibling.innerText--
+    // check if downvoted, remove downvote if clicked agian
+    // do some with upvote
+}
+
 
