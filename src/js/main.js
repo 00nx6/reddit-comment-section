@@ -34,7 +34,7 @@ const commentProfile = (objData, isReply) => {
     picCont.classList.add('pfp')
     
     const pfpImg = document.createElement('img')
-    // pfpImg.src = new URL(objData.user.image.png, import.meta.url)
+    pfpImg.src = new URL(objData.user.image.png, import.meta.url)
     
     const userName = document.createElement('h2')
     userName.classList.add('username');
