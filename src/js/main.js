@@ -12,44 +12,29 @@ getData()
     .then(data => dataHandler(data))
     .catch(err => console.log(err))
 
-function dataHandler(json) {
+function dataHandler(json){
     json.comments.forEach(obj => {
-        commentProfile(obj, false)
-        if(Array.isArray(obj.replies) && obj.replies.length > 0) {
-            obj.replies.forEach(reply => commentProfile(reply, true))
-        } 
+        commentProfile(obj, false);
+        if (Array.isArray(obj.replies) && obj.replies.length > 0) {
+            obj.replies.forEach(obj => {
+                commentProfile(obj, true)
+            })
+        }
     });
 }
 
-const commentProfile = (objData) => {
+const commentProfile = (objData, isReply) => {
     const commentBody = document.createElement('section')
     commentBody.classList.add('comment')
-    /*
-        div class=userInfo
-            picture class=pfp
-                img
-            h2 class=username
-            h3 class=lefton
-        
-        p class=commentPara
 
-        section class=rating
-            div class=updownvotes
-                button class upVote
-                    i class Plus
-                h2 class voteCount
-                button class downvote
-                    i class minus
-                
-    */ 
     const userInfo = document.createElement('div')
     userInfo.classList.add('userInfo');
 
     const picCont = document.createElement('picture')
     picCont.classList.add('pfp')
-
+    
     const pfpImg = document.createElement('img')
-    pfpImg.src = objData.user.image.png
+    pfpImg.src = new URL(objData.user.image.png, import.meta.url)
     
     const userName = document.createElement('h2')
     userName.classList.add('username');
@@ -58,11 +43,24 @@ const commentProfile = (objData) => {
     const leftAt = document.createElement('h3')
     leftAt.classList.add('leftOn')
     leftAt.innerText = objData.createdAt
-
+    
     const commentPara = document.createElement('p')
     commentPara.classList.add('commentPara')
-    commentPara.innerText = objData.content
 
+    
+    if (isReply) {
+
+        commentBody.classList.add('reply');
+        const replyingToCont = document.createElement('span')
+        replyingToCont.classList.add('replyAt')
+        const replyingTo = document.createElement('h3')
+
+        replyingTo.innerText = `@${objData.replyingTo}`
+
+        replyingToCont.appendChild(replyingTo)
+        commentPara.innerHTML = replyingToCont.outerHTML + objData.content
+    } else commentPara.append(objData.content)
+    
     const ratingCont = document.createElement('section')
     ratingCont.classList.add('rating')
 
@@ -110,3 +108,4 @@ const commentProfile = (objData) => {
 // if in the forEach loop, it finds comments to be a non empty array, 
 // for every reply on the comment run the reply append function
 // determine if its a reply by passing it on as a boolean
+
