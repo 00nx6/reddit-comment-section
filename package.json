@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html"
@@ -21,6 +20,8 @@
   "homepage": "https://github.com/00nx6/reddit-comment-section#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.0",
-    "parcel": "^2.4.0"
-  }
+    "parcel": "^2.4.0",
+    "webpack": "^5.70.0"
+  },
+  "proxy": "http://localhost:1234/"
 }

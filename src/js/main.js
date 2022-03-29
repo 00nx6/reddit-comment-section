@@ -1,5 +1,11 @@
 const genCont = document.querySelector('.genCont');
 
+const imgSrc = {
+    amyrobson : "./images/avatars/image-amyrobson.png",
+    "juliusomo" : "./images/avatars/image-juliusomo.png",
+    "maxblagun" : "./images/avatars/image-maxblagun.png"
+}
+
 const getData  =async () => {
     const res = await fetch('https://raw.githubusercontent.com/00nx6/reddit-comment-section/main/src/js/data.json')
     if (res.status !== 200) {
@@ -12,6 +18,7 @@ getData()
     .then(data => dataHandler(data))
     .catch(err => console.log(err))
 
+
 function dataHandler(json){
     json.comments.forEach(obj => {
         commentProfile(obj, false);
@@ -20,6 +27,7 @@ function dataHandler(json){
                 commentProfile(obj, true)
             })
         }
+        
     });
 }
 
@@ -29,12 +37,6 @@ const commentProfile = (objData, isReply) => {
 
     const userInfo = document.createElement('div')
     userInfo.classList.add('userInfo');
-
-    const picCont = document.createElement('picture')
-    picCont.classList.add('pfp')
-    
-    const pfpImg = document.createElement('img')
-    pfpImg.src = new URL(objData.user.image.png, import.meta.url)
     
     const userName = document.createElement('h2')
     userName.classList.add('username');
@@ -82,6 +84,8 @@ const commentProfile = (objData, isReply) => {
     const downVote = document.createElement('button')
     downVote.classList.add('downVote')
 
+    // downVote.addEventListener('click', upvote)
+
     const minusSymbol = document.createElement('i')
     minusSymbol.classList.add('minus')
     minusSymbol.innerText = '-'
@@ -90,10 +94,8 @@ const commentProfile = (objData, isReply) => {
     commentBody.appendChild(userInfo)
     commentBody.appendChild(commentPara)
     commentBody.appendChild(ratingCont)
-    userInfo.append(picCont)
     userInfo.append(userName)
     userInfo.append(leftAt)
-    picCont.append(pfpImg)
     ratingCont.appendChild(votesCont)
     votesCont.appendChild(upVote)
     upVote.appendChild(addSymbol)
@@ -102,7 +104,10 @@ const commentProfile = (objData, isReply) => {
     downVote.appendChild(minusSymbol)
 
     genCont.appendChild(commentBody)
+
+    voteBttns()
 }
+
 
 // make a seperate function for appending the comment, 
 // so it can be reused for comments too
