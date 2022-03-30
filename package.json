@@ -20,8 +20,10 @@
   "homepage": "https://github.com/00nx6/reddit-comment-section#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.0",
+    "lodash": "^4.17.21",
     "parcel": "^2.4.0",
-    "webpack": "^5.70.0"
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "proxy": "http://localhost:1234/"
 }
