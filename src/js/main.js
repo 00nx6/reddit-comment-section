@@ -1,11 +1,11 @@
 const genCont = document.querySelector('.genCont');
 
 const imgSrc = {
-    amyrobson : "./images/avatars/image-amyrobson.png",
-    "juliusomo" : "./images/avatars/image-juliusomo.png",
-    "maxblagun" : "./images/avatars/image-maxblagun.png"
+    amyrobson : require('./images/avatars/image-amyrobson.png'),
+    juliusomo : require("./images/avatars/image-juliusomo.png"),
+    maxblagun : require("./images/avatars/image-maxblagun.png"),
+    ramsesmiron : require('./images/avatars/image-ramsesmiron.png')
 }
-
 const getData  =async () => {
     const res = await fetch('https://raw.githubusercontent.com/00nx6/reddit-comment-section/main/src/js/data.json')
     if (res.status !== 200) {
@@ -37,7 +37,12 @@ const commentProfile = (objData, isReply) => {
 
     const userInfo = document.createElement('div')
     userInfo.classList.add('userInfo');
-    
+
+    const pfpCont = document.createElement('picture')
+    const pfp = document.createElement('img')
+    pfp.src = `${imgSrc[objData.user.username]}`
+    pfpCont.append(pfp)
+    userInfo.append(pfpCont)
     const userName = document.createElement('h2')
     userName.classList.add('username');
     userName.innerText = objData.user.username
@@ -51,7 +56,6 @@ const commentProfile = (objData, isReply) => {
 
     
     if (isReply) {
-
         commentBody.classList.add('reply');
         const replyingToCont = document.createElement('span')
         replyingToCont.classList.add('replyAt')
@@ -108,13 +112,23 @@ const commentProfile = (objData, isReply) => {
 }
 
 function upVoteClick() {
-    this.nextElementSibling.innerText++
+    if (this.nextElementSibling.classList.contains('upvoted')) {
+        this.nextElementSibling.innerText--
+        this.nextElementSibling.classList.remove('upvoted')
+    } else {
+        this.nextElementSibling.innerText++
+        this.nextElementSibling.classList.add('upvoted')   
+    }
 }
 
-function downVoteClick() {
-    this.previousElementSibling.innerText--
-    // check if downvoted, remove downvote if clicked agian
-    // do some with upvote
+function downVoteClick() {      
+    if (this.previousElementSibling.classList.contains('downvoted')) {
+        this.previousElementSibling.innerText++
+        this.previousElementSibling.classList.remove('downvoted')
+    } else {
+        this.previousElementSibling.innerText--
+        this.previousElementSibling.classList.add('downvoted')   
+    }
 }
 
 

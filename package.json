@@ -21,7 +21,8 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.0",
     "parcel": "^2.4.0",
-    "webpack": "^5.70.0"
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "proxy": "http://localhost:1234/"
 }
